@@ -16,7 +16,7 @@ import globalStyles from '../assets/styles/globalStyles';
   /* TODO make erros*/
 }
 
-export default function LoginScreen({ navigation }) {
+export default function SignupScreen({ navigation }) {
   const handlePress = () => {
     Alert.alert('Bler', 'bler');
   };
@@ -24,7 +24,7 @@ export default function LoginScreen({ navigation }) {
   return (
     <View style={globalStyles.container}>
       <View style={styles.rounded}></View>
-      <Text style={globalStyles.h1}>Welcome back!</Text>
+      <Text style={globalStyles.h1}>Let's get started!</Text>
       {/*inputs*/}
       <View style={styles.inputArea}>
         <TextInput
@@ -60,10 +60,10 @@ export default function LoginScreen({ navigation }) {
       </View>
       {/* TODO make a repository to login*/}
       <TouchableOpacity style={globalStyles.button} onPress={handlePress}>
-        <Text style={globalStyles.buttonText}>Log in</Text>
+        <Text style={globalStyles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
-      <Text style={globalStyles.h2}>or Log in with</Text>
+      <Text style={globalStyles.h2}>or Sign up with</Text>
       {/* TODO make login if facebook and Gmail*/}
       <View style={styles.viewButton}>
         <TouchableOpacity style={styles.secondaryButton} onPress={handlePress}>
@@ -73,12 +73,12 @@ export default function LoginScreen({ navigation }) {
           <Text style={styles.secondaryButtonText}>Gmail</Text>
         </TouchableOpacity>
       </View>
-      {/* DONE navigate to signUP*/}
+      {/* TODO navigate to signUP*/}
       <Text
         style={globalStyles.h2}
-        onPress={() => navigation.navigate('Signup')}
+        onPress={() => navigation.navigate('Login')}
       >
-        Don't have an account? Get started!
+        Already an account? Log in!
       </Text>
     </View>
   );

@@ -1,28 +1,20 @@
-import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import * as Font from 'expo-font';
 
-// Insert google fonts
-const fetchFonts = () => {
-  return Font.loadAsync({
-    'gruppo-regular': require('../assets/fonts/gruppo-Regular.ttf'),
-  });
-};
+import globalStyles from '../assets/styles/globalStyles';
 
-export default function InicialScreen({navigation}) {
-  // call google fonts
-  fetchFonts();
-
+export default function InicialScreen({ navigation }) {
   const handlePress = () => {
-    navigation.navigate('Login')
+    navigation.navigate('Login');
   };
 
   return (
-    <View style={styles.container}>
+    <View style={globalStyles.container}>
       {/* TODO colocar imagem ou escrita da logo  */}
       <View style={styles.div}>
         <View style={styles.rounded}></View>
-        <Text style={styles.h1}>GET THINGS DONE</Text>
-        <Text style={styles.h2}>
+        <Text style={globalStyles.h1}>GET THINGS DONE</Text>
+        <Text style={globalStyles.h2}>
           Do it Now will help you stay organized and perform your task much
           faster in smart way
         </Text>
@@ -33,14 +25,7 @@ export default function InicialScreen({navigation}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#C2B1E8',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',   
-  },
+const styles = StyleSheet.create({ 
   div: {
     flex: 1,
     alignItems: 'center',
@@ -62,21 +47,17 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 10,
   },
-  h2: {
-    fontFamily: 'gruppo-regular',
-    fontSize: 20,
-    textAlign: 'center',
-    color: '#000000',
-    padding: 20,
-    marginBottom: 80,
-  },
   button: {
-    backgroundColor: '#F47B61',
-    paddingVertical: 16,
-    paddingHorizontal: 120,
+    backgroundColor: '#fef5fd',
+    height: 40,
+    width: 370,
     borderTopEndRadius: 30,
     borderBottomEndRadius: 30,
     borderTopStartRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    marginTop: 100
   },
   buttonText: {
     fontFamily: 'gruppo-regular',
