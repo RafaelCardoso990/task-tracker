@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 import {
   StyleSheet,
   Text,
@@ -11,12 +13,41 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 //Global Style import
 import globalStyles from '../assets/styles/globalStyles';
+import api from '../repositories/API';
 
 {
   /* TODO make erros*/
 }
 
-export default function SignupScreen({ navigation }) {
+export default function LoginScreen({ navigation }) {
+
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+  });
+
+  function Login() {
+    const body = {
+      email: user.email,
+      password: user.password,
+    };
+
+    const res = api.post('/login',body)
+    res.then(response => {
+      navigation.navigate('Home');
+    });
+    res.catch(e => {
+      console.log(e);
+    });
+  }
+
+  const handleForm = (fieldName, value) => {
+    setUser({
+      ...user,
+      [fieldName]: value,
+    });
+  };
+
   const handlePress = () => {
     Alert.alert('Bler', 'bler');
   };
@@ -24,13 +55,12 @@ export default function SignupScreen({ navigation }) {
   return (
     <View style={globalStyles.container}>
       <View style={styles.rounded}></View>
-      <Text style={globalStyles.h1}>Let's get started!</Text>
+      <Text style={globalStyles.h1}>Welcome back!</Text>
       {/*inputs*/}
       <View style={styles.inputArea}>
         <TextInput
           style={styles.input}
-          // onChangeText={handleInputChange}
-          // value={inputText}
+          onChangeText={text => handleForm('email', text)}
           keyboardType="default"
           autoCapitalize="none"
           autoCompleteType="off"
@@ -45,8 +75,7 @@ export default function SignupScreen({ navigation }) {
       <View style={styles.inputArea}>
         <TextInput
           style={styles.input}
-          // onChangeText={handleInputChange}
-          // value={inputText}
+          onChangeText={text => handleForm('password', text)}
           keyboardType="default"
           autoCapitalize="none"
           autoCompleteType="off"
@@ -54,31 +83,32 @@ export default function SignupScreen({ navigation }) {
           selectionColor="#f00"
           underlineColorAndroid="transparent"
           spellCheck={false}
+          secureTextEntry={true}
         />
         <Text style={styles.label}>Password</Text>
         <Icon style={styles.icon} name="lock" size={20} color={'#000'} />
       </View>
       {/* TODO make a repository to login*/}
-      <TouchableOpacity style={globalStyles.button} onPress={handlePress}>
-        <Text style={globalStyles.buttonText}>Sign Up</Text>
+      <TouchableOpacity style={globalStyles.button} onPress={Login}>
+        <Text style={globalStyles.buttonText}>Log in</Text>
       </TouchableOpacity>
 
-      <Text style={globalStyles.h2}>or Sign up with</Text>
+      <Text style={globalStyles.h3}>or Log in with</Text>
       {/* TODO make login if facebook and Gmail*/}
       <View style={styles.viewButton}>
-        <TouchableOpacity style={styles.secondaryButton} onPress={handlePress}>
+        <TouchableOpacity style={styles.secondaryButton} onPress={'handlePress'}>
           <Text style={styles.secondaryButtonText}>facebook</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.secondaryButton} onPress={handlePress}>
+        <TouchableOpacity style={styles.secondaryButton} onPress={'handlePress'}>
           <Text style={styles.secondaryButtonText}>Gmail</Text>
         </TouchableOpacity>
       </View>
-      {/* TODO navigate to signUP*/}
+      {/* DONE navigate to signUP*/}
       <Text
-        style={globalStyles.h2}
-        onPress={() => navigation.navigate('Login')}
+        style={globalStyles.h3}
+        onPress={() => navigation.navigate('Signup')}
       >
-        Already an account? Log in!
+        Don't have an account? Get started!
       </Text>
     </View>
   );
@@ -124,11 +154,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   secondaryButton: {
-    backgroundColor: '#F47B61',
+    backgroundColor: '#C2B1E8',
     width: 120,
     height: 20,
     borderRadius: 35,
     margin: 2,
+    marginBottom: 20
   },
   secondaryButtonText: {
     fontFamily: 'gruppo-regular',

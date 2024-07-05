@@ -14,7 +14,7 @@ export default function InicialScreen({ navigation }) {
       <View style={styles.div}>
         <View style={styles.rounded}></View>
         <Text style={globalStyles.h1}>GET THINGS DONE</Text>
-        <Text style={globalStyles.h2}>
+        <Text style={globalStyles.h3}>
           Do it Now will help you stay organized and perform your task much
           faster in smart way
         </Text>

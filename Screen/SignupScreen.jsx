@@ -1,3 +1,8 @@
+import { useState, useEffect } from 'react';
+import Icon from 'react-native-vector-icons/FontAwesome';
+//Global Style import
+import globalStyles from '../assets/styles/globalStyles';
+
 import {
   StyleSheet,
   Text,
@@ -7,30 +12,66 @@ import {
   Alert,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-//Global Style import
-import globalStyles from '../assets/styles/globalStyles';
+import api from '../repositories/API';
 
 {
   /* TODO make erros*/
 }
 
-export default function LoginScreen({ navigation }) {
-  const handlePress = () => {
-    Alert.alert('Bler', 'bler');
+export default function SignupScreen({ navigation }) {
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+
+  function Register() {
+    const body = {
+      name: user.name,
+      email: user.email,
+      password: user.password,
+    }; 
+
+    const res = api.post('/user',body)
+    res.then(response => {
+      navigation.navigate('Login');
+    });
+    res.catch(e => {
+      console.log(e);
+    });
+  }
+
+  const handleForm = (fieldName, value) => {
+    setUser({
+      ...user,
+      [fieldName]: value,
+    });
   };
 
   return (
     <View style={globalStyles.container}>
       <View style={styles.rounded}></View>
-      <Text style={globalStyles.h1}>Welcome back!</Text>
+      <Text style={globalStyles.h1}>Let's get started!</Text>
       {/*inputs*/}
       <View style={styles.inputArea}>
         <TextInput
           style={styles.input}
-          // onChangeText={handleInputChange}
-          // value={inputText}
+          onChangeText={text => handleForm('name', text)}
+          keyboardType="default"
+          autoCapitalize="none"
+          autoCompleteType="off"
+          placeholderTextColor="#999"
+          selectionColor="#f00"
+          underlineColorAndroid="transparent"
+          spellCheck={false}
+        />
+        <Text style={styles.label}>Name</Text>
+        <Icon style={styles.icon} name="check" size={20} color={'#000'} />
+      </View>
+      <View style={styles.inputArea}>
+        <TextInput
+          style={styles.input}
+          onChangeText={text => handleForm('email', text)}
           keyboardType="default"
           autoCapitalize="none"
           autoCompleteType="off"
@@ -45,8 +86,7 @@ export default function LoginScreen({ navigation }) {
       <View style={styles.inputArea}>
         <TextInput
           style={styles.input}
-          // onChangeText={handleInputChange}
-          // value={inputText}
+          onChangeText={text => handleForm('password', text)}
           keyboardType="default"
           autoCapitalize="none"
           autoCompleteType="off"
@@ -54,31 +94,32 @@ export default function LoginScreen({ navigation }) {
           selectionColor="#f00"
           underlineColorAndroid="transparent"
           spellCheck={false}
+          secureTextEntry={true}
         />
         <Text style={styles.label}>Password</Text>
         <Icon style={styles.icon} name="lock" size={20} color={'#000'} />
       </View>
       {/* TODO make a repository to login*/}
-      <TouchableOpacity style={globalStyles.button} onPress={handlePress}>
-        <Text style={globalStyles.buttonText}>Log in</Text>
+      <TouchableOpacity style={globalStyles.button} onPress={Register}>
+        <Text style={globalStyles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
-      <Text style={globalStyles.h2}>or Log in with</Text>
+      <Text style={globalStyles.h2}>or Sign up with</Text>
       {/* TODO make login if facebook and Gmail*/}
       <View style={styles.viewButton}>
-        <TouchableOpacity style={styles.secondaryButton} onPress={handlePress}>
+        <TouchableOpacity style={styles.secondaryButton} onPress={''}>
           <Text style={styles.secondaryButtonText}>facebook</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.secondaryButton} onPress={handlePress}>
+        <TouchableOpacity style={styles.secondaryButton} onPress={''}>
           <Text style={styles.secondaryButtonText}>Gmail</Text>
         </TouchableOpacity>
       </View>
-      {/* DONE navigate to signUP*/}
+      {/* TODO navigate to signUP*/}
       <Text
         style={globalStyles.h2}
-        onPress={() => navigation.navigate('Signup')}
+        onPress={() => navigation.navigate('Login')}
       >
-        Don't have an account? Get started!
+        Already an account? Log in!
       </Text>
     </View>
   );

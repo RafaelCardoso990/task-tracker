@@ -1,13 +1,12 @@
-import { StyleSheet } from 'react-native-web';
+import { StyleSheet } from 'react-native';
 
 //Import google/expo fonts
 import * as Font from 'expo-font';
-import { height, width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 // Insert google fonts
 const fetchFonts = () => {
   return Font.loadAsync({
-    'gruppo-regular': require('../fonts/gruppo-Regular.ttf'),
+    'Poppins-Light': require('../fonts/Poppins/Poppins-Light.ttf'),
   });
 };
 
@@ -21,7 +20,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   h1: {
-    fontFamily: 'gruppo-regular',
+    fontFamily: 'Poppins-Light',
     fontSize: 45,
     textAlign: 'center',
     color: '#000000',
@@ -30,11 +29,25 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   h2: {
-    fontFamily: 'gruppo-regular',
-    fontSize: 20,
+    fontFamily: 'Poppins-Light',
+    fontSize: 28,
     textAlign: 'center',
     color: '#000000',
     padding: 20,
+  }, 
+  h3: {
+    fontFamily: 'Poppins-Light',
+    fontSize: 20,
+    textAlign: 'center',
+    color: '#000000',
+    marginBottom: 20
+  },
+  h4: {
+    fontFamily: 'Poppins-Light',
+    fontSize: 18,
+    textAlign: 'center',
+    color: '#000000',
+   
   },
   button: {
     backgroundColor: '#fef5fd',
@@ -48,7 +61,7 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   buttonText: {
-    fontFamily: 'gruppo-regular',
+    fontFamily: 'Poppins-Black',
     color: '#000',
     fontSize: 34,
   },
