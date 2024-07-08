@@ -27,12 +27,15 @@ As tecnologias utilizadas neste projeto foram:
 ```bash
 # Clone o repositorio
 git@github.com:RafaelCardoso990/akopol-nextjs.git
-```
 
 # Navegue para o diretório do projeto
 cd akopol-website
 
 # Instale as dependências
 npm install
+
+# Rode o codigo
+npm run start
+```
 
 
