@@ -1,6 +1,6 @@
 # AKOPOL Detetives
 
-![Mockups](https://ibb.co/N25d1Z9)
+![Mockups](https://i.ibb.co/23x18gv/1.png)
 
 Proposta de site desenvolvida para substituir o akopol.com.br. O cliente solicitou um site otimizado para SEO do Google, e consegui alcançar uma pontuação elevada de SEO com este projeto.
 
